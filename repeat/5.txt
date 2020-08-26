@@ -1,0 +1,18 @@
+in the 5.py we use session which i know most of it and didn't find any problem with revising it 
+
+after login if the page is refreshed using the submit button in the form then the if statements will be executed else else statement which means that it we refresh it using f5 key or any other means
+
+the session.permanent is used to make the session which is temporary storing variable permanent for a specific time like in fb we don't have to type our password again and again but just click login
+
+the secret key is a must if we want to use POST method
+
+when logged in we are moved to user function and if we use some trick like going to the user function by changing the link in the address bar then we will be redirected to the login page/persmission not granted message because the session has no dictionary
+
+when we type /logout in the address bar the dictionary in the session will be destroyed and we will be redirected to the login page.
+
+to check if the session permanent save for 5 minutes work 
+login the page and then close the browser 
+open the browser again and then enter the login page 
+if it redirect you to your name page then it means that permanent session works
+
+

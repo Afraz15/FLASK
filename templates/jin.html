@@ -1,0 +1,15 @@
+{% extends '1.html' %}
+
+{% block title %} 
+JINJA
+{% endblock %}
+
+{% block body %}
+
+<form action="/login" method="POST">
+    <label for="name">Enter your name</label>
+    <input type="text" id="name" name='username'> <br>
+    <input type="submit">
+</form>
+{% endblock %}
+

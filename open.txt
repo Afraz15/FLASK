@@ -1,0 +1,210 @@
+$env:FLASK_APP = "hello.py"
+flask run
+
+the program will run in 127.0.0.1:5000/
+
+this will allow the program to run on the computer only
+
+to run the program on a wifi or public network we have to use 
+
+flask run --host=0.0.0.0
+
+then we can access the host file using the ip address of the mobile or the machine.
+
+to check the ip address of the machine we use cmd then ipconfig to see the ip addresses
+___________________________________________________
+string
+	
+
+(default) accepts any text without a slash
+
+int
+	
+
+accepts positive integers
+
+float
+	
+
+accepts positive floating point values
+
+path
+	
+
+like string but also accepts slashes
+
+uuid
+	
+
+accepts UUID strings
+
+___________________________________________________
+
+    RENDER TEMPLATE
+
+1. import render_template
+2. make a folder named templates
+3. make an html file or a template
+4. call the template in your py using 'return render_template('1.html')
+
+___________________________________________________
+
+    JINJA FILE
+1. make a html file with !
+2. enter {% block title %} {% endblock %} in the title and {% block body %} {% endblock %} in the body.
+3. make another file and type {% entends 'name of file' %}
+4. in the new file , type {% block title %} some text {% endblock %} and {% block body %} some text {% endblock %} 
+5. this mathod will help you create you own template and it will also save your time
+6. to use the JINJA , we use the RENDER_TEMPLATE mathod and type the name of the new file where we used extend command
+
+
+NOTE: these files are in templates folder
+
+___________________________________________________
+
+    URL_FOR
+
+1. this is used to link files or something like that
+
+___________________________________________________
+
+we can access the ?key=value in the address bar with :
+
+searchword = request.args.get('key', '')
+
+
+___________________________________________________
+
+    UPLOAD FILES & SAVE THEM
+
+from flask import request
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        f = request.files['the_file']
+        f.save('/var/www/uploads/uploaded_file.txt')
+
+if we want to name the file like the original name then we use :
+from werkzeug.utils import secure_filename
+
+and then the line 86 we change it like this :
+f.save('/var/www/uploads/' + secure_filename(f.filename))
+
+___________________________________________________
+
+    COOKIES
+
+to read the cookies we use :
+
+from flask import request
+
+@app.route('/')
+def cookies():
+    username = request.cookies.get('username')
+
+to store cookies :
+
+from flask import make_response
+
+@app.route('/')
+def cookies():
+    resp = make_response(render_template(...))
+    resp.set_cookies('username', 'the username')
+    return resp
+
+___________________________________________________
+
+    REDIRECT AND ERRORS
+
+To redirect a user to another endpoint, use the redirect() function; to abort a request early with an error code, use the abort() function.
+
+from flask import abort, redirect, url_for
+
+@app.route('/')
+def index():
+    return redirect(url_for('login'))
+
+@app.route('/login')
+def login():
+    abort(401)
+    this_is_never_executed()
+
+this will redirect the user from index to a page they cannot access (401 means access denied) but it shows how that works.
+
+by default a black and white error page is shown for each error page is shown for each error code. If you want to customize the error page, you can use errorhandler() decorator:
+
+from flask import render_template
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('page)notfound.html'), 404
+
+the 404 after the render_template means that it should tell flask that the status code that page be 404 or error of not found.
+
+___________________________________________________
+
+    RESPONSES
+
+@app.errorhandler(404)
+def not_found(error):
+    resp = make_response(render_template('error.html'), 404)
+    resp.headers['X-something] = 'A value'
+    return resp
+
+___________________________________________________
+
+if the data is in dict then it we can just use jsonify() function to show the data.
+
+@app.route('/users')
+def users_api():
+    users = get_all_users()
+    users = get_all_users()
+    return jsonify([user.to_json() for suer in users])
+
+___________________________________________________
+
+     USING BACKEND NAMES IN FRONTEND
+
+if we want to use the name or some value in the front end then we have to use it like this:
+
+in the frontend:
+    <p>{{ content / or something else }}</p>
+
+in the backend:
+def user(name):
+  return f"hello {name}"
+  render_template('index.html', content=name)
+
+when we run this , the content in the frontend will be replaced with the name which is equal to content in the backend.
+
+___________________________________________________
+
+    USING PYTHON IN FRONTEND
+
+we can use python in the frontend using :
+
+in the code we use 
+
+{% for _ in range(10) %}
+<p> HELLO WORLD </p>
+{ endfor }
+
+this will print out the HELLO WORLD 10 times
+
+___________________________________________________
+
+     PRINT OUT A LIST OF VALUE
+
+first make a list of content in the backend like :
+render_template('index.html', content = [list of values])
+
+make a loop in the frontend like in the line 189 but replace the loop :
+for x in content
+{{x}}
+
+using post it is a must to put the secret key
+
+
+
+

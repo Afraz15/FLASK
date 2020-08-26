@@ -1,0 +1,15 @@
+in the 4.py we use form
+
+in the conditional statement 
+
+if mathod == 'post':
+    usr = request.form['name']
+
+else:
+    reutrn render...('login.html')
+
+this means that when we refresh the page it will be refreshed as get method and when we type some text and submit it 
+
+it will be refreshed as a 'post' refresh 
+
+then we use the information in the post refresh which is the name of the user 

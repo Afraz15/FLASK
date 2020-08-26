@@ -1,0 +1,21 @@
+we cannot not use different variables in app.route('/<yo>') and in it's def(user) but it should be the same like : '/<yo>' and def(yo)
+
+1. we use /<path:yo> for path like values
+2. we use /<yo> for text type data or like username
+3. we use /<int:yo> for int text type data type
+
+we can also use f'hello {yo}'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
